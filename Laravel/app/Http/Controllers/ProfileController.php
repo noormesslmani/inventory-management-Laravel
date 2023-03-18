@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\ProfileServiceInterface;
+use App\Contracts\Service\ProfileServiceInterface;
 
 use App\Http\Requests\UpdateProfileRequest;
 use App\Http\Requests\ChangePasswordRequest;
@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\JsonResponse;
 
 
-class UserController extends Controller
+class ProfileController extends Controller
 {
 
     use PrepareResponseTrait;

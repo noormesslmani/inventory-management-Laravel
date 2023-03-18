@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 use App\Models\User;
-use App\Contracts\ProfileRepositoryInterface;
+use App\Contracts\Repository\ProfileRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
 class ProfileRepository implements ProfileRepositoryInterface
 {

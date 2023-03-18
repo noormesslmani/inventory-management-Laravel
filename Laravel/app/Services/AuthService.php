@@ -3,8 +3,8 @@
 namespace App\Services;
 
 use App\Repositories\AuthRepository;
-use App\Contracts\AuthServiceInterface;
-use App\Contracts\AuthRepositoryInterface;
+use App\Contracts\Service\AuthServiceInterface;
+use App\Contracts\Repository\AuthRepositoryInterface;
 use Symfony\Component\HttpFoundation\Response;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;

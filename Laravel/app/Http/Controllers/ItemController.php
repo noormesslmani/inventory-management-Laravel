@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\ItemServiceInterface;
+use App\Contracts\Service\ItemServiceInterface;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;

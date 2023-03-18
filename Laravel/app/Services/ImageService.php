@@ -6,7 +6,7 @@ namespace App\Services;
 use Symfony\Component\HttpFoundation\Response;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
-use App\Contracts\ImageServiceInterface;
+use App\Contracts\Service\ImageServiceInterface;
 
 class ImageService implements ImageServiceInterface
 {

@@ -5,7 +5,7 @@ use App\Models\Item;
 use App\Models\Product;
 use App\Exceptions\NotFoundException;
 use App\Exceptions\ActionForbiddenException;
-use App\Contracts\ItemRepositoryInterface;
+use App\Contracts\Repository\ItemRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
 class ItemRepository implements ItemRepositoryInterface
 {

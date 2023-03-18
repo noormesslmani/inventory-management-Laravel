@@ -8,15 +8,15 @@ use App\Services\ProductService;
 use App\Services\ImageService;
 use App\Services\ItemService;
 
-use App\Contracts\AuthServiceInterface;
-use App\Contracts\AuthRepositoryInterface;
-use App\Contracts\ProfileServiceInterface;
-use App\Contracts\ProfileRepositoryInterface;
-use App\Contracts\ProductServiceInterface;
-use App\Contracts\ProductRepositoryInterface;
-use App\Contracts\ImageServiceInterface;
-use App\Contracts\ItemRepositoryInterface;
-use App\Contracts\ItemServiceInterface;
+use App\Contracts\Service\AuthServiceInterface;
+use App\Contracts\Repository\AuthRepositoryInterface;
+use App\Contracts\Service\ProfileServiceInterface;
+use App\Contracts\Repository\ProfileRepositoryInterface;
+use App\Contracts\Service\ProductServiceInterface;
+use App\Contracts\Repository\ProductRepositoryInterface;
+use App\Contracts\Service\ImageServiceInterface;
+use App\Contracts\Repository\ItemRepositoryInterface;
+use App\Contracts\Service\ItemServiceInterface;
 
 use App\Repositories\ProfileRepository;
 use App\Repositories\AuthRepository;

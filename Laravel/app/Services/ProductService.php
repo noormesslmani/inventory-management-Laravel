@@ -2,9 +2,9 @@
 
 namespace App\Services;
 
-use App\Contracts\ProductRepositoryInterface;
-use App\Contracts\ProductServiceInterface;
-use App\Contracts\ImageServiceInterface;
+use App\Contracts\Repository\ProductRepositoryInterface;
+use App\Contracts\Service\ProductServiceInterface;
+use App\Contracts\Service\ImageServiceInterface;
 
 use Symfony\Component\HttpFoundation\Response;
 

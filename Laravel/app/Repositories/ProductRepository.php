@@ -5,7 +5,7 @@ use App\Models\Product;
 use App\Models\User;
 use App\Exceptions\NotFoundException;
 use App\Exceptions\ActionForbiddenException;
-use App\Contracts\ProductRepositoryInterface;
+use App\Contracts\Repository\ProductRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
 class ProductRepository implements ProductRepositoryInterface
 {

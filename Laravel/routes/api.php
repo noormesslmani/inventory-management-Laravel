@@ -21,7 +21,7 @@ Route::group(['prefix' => 'v1.0.0'], function () {
     
     Route::group(['middleware' => 'auth:api'], function () {
 
-        Route::group(['prefix' => 'user'], function () {
+        Route::group(['prefix' => 'profile'], function () {
             
             Route::get('/', [ProfileController::class, 'index']);
             Route::patch('/', [ProfileController::class, 'update']);

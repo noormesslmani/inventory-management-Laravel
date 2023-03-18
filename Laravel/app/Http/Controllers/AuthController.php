@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Services\AuthService;
-use App\Contracts\AuthServiceInterface;
+use App\Contracts\Service\AuthServiceInterface;
 use App\Repositories\AuthRepository;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\AuthenticateUserRequest;

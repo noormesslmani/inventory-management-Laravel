@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Contracts\ProfileRepositoryInterface;
-use App\Contracts\ProfileServiceInterface;
+use App\Contracts\Repository\ProfileRepositoryInterface;
+use App\Contracts\Service\ProfileServiceInterface;
 
 use Symfony\Component\HttpFoundation\Response;
 use JWTAuth;
