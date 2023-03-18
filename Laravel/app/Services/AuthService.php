@@ -10,6 +10,8 @@ use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use APP\Exceptions\ConflictException;
 
+use App\Events\UserCreated;
+use Illuminate\Support\Facades\Event;
 
 class AuthService implements AuthServiceInterface
 {
@@ -23,6 +25,7 @@ class AuthService implements AuthServiceInterface
     public function registerUser(array $userData): array
     {
         $user= $this->authRepository->create($userData);
+        Event::dispatch(new UserCreated($user));
         return [
             'success' => true,
             'message' => 'User created successfully',
