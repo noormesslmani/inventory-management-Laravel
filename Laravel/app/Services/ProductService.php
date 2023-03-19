@@ -8,13 +8,16 @@ use App\Contracts\Service\ImageServiceInterface;
 
 use Symfony\Component\HttpFoundation\Response;
 
-use App\Exceptions\NotFoundException;
-use App\Exceptions\ActionForbiddenException;
+use App\Traits\HandleActionForbiddenExceptionTrait;
+use App\Traits\HandleNotFoundExceptionTrait;
 
 use Illuminate\Support\Facades\Auth;
 
 class ProductService implements ProductServiceInterface
 {
+
+    use HandleNotFoundExceptionTrait, HandleActionForbiddenExceptionTrait;
+
     protected $productRepository;
     protected $imageService;
 
@@ -82,15 +85,13 @@ class ProductService implements ProductServiceInterface
         
         $product = $this->productRepository->show($id);
 
-        if(!$product){
-            $exception = new NotFoundException();
-            return $exception->render();
-        }
+        if(!$product)
+            return $this->handleNotFoundException();
+        
            
-        if($product->owner_id!=Auth::id()){
-            $exception = new ActionForbiddenException();
-            return $exception->render();
-        }
+        if($product->owner_id!=Auth::id())
+            return $this->handleActionForbiddenException();
+
 
         $updatedProduct = $this->productRepository->update(array_merge($data,['owner_id'=>$id]), $product);
         
@@ -110,15 +111,11 @@ class ProductService implements ProductServiceInterface
        
         $product = $this->productRepository->show($id);
 
-        if(!$product){
-            $exception = new NotFoundException();
-            return $exception->render();
-        }
+        if(!$product)
+            return $this->handleNotFoundException();
            
-        if($product->owner_id!=Auth::id()){
-            $exception = new ActionForbiddenException();
-            return $exception->render();
-        }
+        if($product->owner_id!=Auth::id())
+            return $this->handleActionForbiddenException();
 
         $updatedProduct = $this->productRepository->destroy($product);
         

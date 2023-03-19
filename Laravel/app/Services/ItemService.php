@@ -8,13 +8,15 @@ use App\Contracts\Service\ItemServiceInterface;
 
 use Symfony\Component\HttpFoundation\Response;
 
-use App\Exceptions\NotFoundException;
-use App\Exceptions\ActionForbiddenException;
-
 use Illuminate\Support\Facades\Auth;
+
+use App\Traits\HandleActionForbiddenExceptionTrait;
+use App\Traits\HandleNotFoundExceptionTrait;
 
 class ItemService implements ItemServiceInterface
 {
+    use HandleNotFoundExceptionTrait, HandleActionForbiddenExceptionTrait;
+
     protected $itemRepository;
     protected $productRepository;
 
@@ -29,15 +31,11 @@ class ItemService implements ItemServiceInterface
         //retreive the product which items belong to
         $product = $this->productRepository->show($product_id);
 
-        if(!$product){
-            $exception = new NotFoundException();
-            return $exception->render();
-        }
+        if(!$product)
+            return $this->handleNotFoundException();
 
-        if($product->owner_id!=Auth::id()){
-            $exception = new ActionForbiddenException();
-            return $exception->render();
-        }
+        if($product->owner_id!=Auth::id())
+            return $this->handleActionForbiddenException();
 
         $items = $this->itemRepository->index($product);
         
@@ -56,15 +54,11 @@ class ItemService implements ItemServiceInterface
         //retreive the product which items belong to
         $product = $this->productRepository->show($product_id);
 
-        if(!$product){
-            $exception = new NotFoundException();
-            return $exception->render();
-        }
+        if(!$product)
+            return $this->handleNotFoundException();
 
-        if($product->owner_id!=Auth::id()){
-            $exception = new ActionForbiddenException();
-            return $exception->render();
-        }
+        if($product->owner_id!=Auth::id())
+            return $this->handleActionForbiddenException();
 
        $items= $this->itemRepository->search($serial_number, $product );
        return [
@@ -82,15 +76,11 @@ class ItemService implements ItemServiceInterface
 
         $product = $this->productRepository->show($data['product_id']);
 
-        if(!$product){
-            $exception = new NotFoundException();
-            return $exception->render();
-        }
+        if(!$product)
+            return $this->handleNotFoundException();
 
-        if($product->owner_id!=Auth::id()){
-            $exception = new ActionForbiddenException();
-            return $exception->render();
-        }
+        if($product->owner_id!=Auth::id())
+            return $this->handleActionForbiddenException();
 
     
        $items= $this->itemRepository->create($data['serialNumbers'],$data['product_id']);
@@ -109,15 +99,11 @@ class ItemService implements ItemServiceInterface
     {
         $item = $this->itemRepository->show($item_id);
 
-        if(!$item){
-            $exception = new NotFoundException();
-            return $exception->render();
-        }
+        if(!$item)
+            return $this->handleNotFoundException();
 
-        if($item->owner()->id!=Auth::id()){
-            $exception = new ActionForbiddenException();
-            return $exception->render();
-        }
+        if($item->owner()->id!=Auth::id())
+            return $this->handleActionForbiddenException();
 
         $updatedItem= $this->itemRepository->update($data,$item);
 
@@ -135,15 +121,11 @@ class ItemService implements ItemServiceInterface
     {
         $item = $this->itemRepository->show($item_id);
 
-        if(!$item){
-            $exception = new NotFoundException();
-            return $exception->render();
-        }
+        if(!$item)
+            return $this->handleNotFoundException();
 
-        if($item->owner()->id!=Auth::id()){
-            $exception = new ActionForbiddenException();
-            return $exception->render();
-        }
+        if($item->owner()->id!=Auth::id())
+            return $this->handleActionForbiddenException();
 
         $this->itemRepository->destroy($item);
 
