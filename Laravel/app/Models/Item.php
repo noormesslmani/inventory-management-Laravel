@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Item extends Model
@@ -22,7 +23,7 @@ class Item extends Model
         return $this->belongsTo(Product::class, 'product_id');
     }
 
-    public function owner()
+    public function owner(): User
     {
         return $this->product->owner;
     }
