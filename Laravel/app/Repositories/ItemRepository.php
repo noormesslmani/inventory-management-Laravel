@@ -7,6 +7,7 @@ use App\Exceptions\NotFoundException;
 use App\Exceptions\ActionForbiddenException;
 use App\Contracts\Repository\ItemRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\ItemPaginationResource ;
 class ItemRepository implements ItemRepositoryInterface
 {
 
@@ -15,7 +16,7 @@ class ItemRepository implements ItemRepositoryInterface
             ->items()
             ->orderBy('is_sold', 'asc')
             ->paginate(15);
-        return $items;
+            return new ItemPagination($items);
     }
 
     public function search(string $serial_number, Product $product): object{
@@ -23,7 +24,7 @@ class ItemRepository implements ItemRepositoryInterface
             ->items()
             ->where('serial_number', 'LIKE', '%'.$serial_number.'%')
             ->paginate(15);
-        return $items;
+            return new ItemPagination($items);
     }
 
     public function show(int $id): ?Item{

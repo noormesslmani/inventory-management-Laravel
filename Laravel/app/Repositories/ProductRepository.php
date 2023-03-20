@@ -7,6 +7,7 @@ use App\Exceptions\NotFoundException;
 use App\Exceptions\ActionForbiddenException;
 use App\Contracts\Repository\ProductRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\ProductPaginationResource ;
 class ProductRepository implements ProductRepositoryInterface
 {
     public function index(): object{
@@ -15,7 +16,7 @@ class ProductRepository implements ProductRepositoryInterface
         ->withCount('unsoldItems')
         ->latest()
         ->paginate(10);
-        return $products;
+        return new ProductPagination($products);
     }
   
     public function search(string $type): object{
@@ -25,7 +26,7 @@ class ProductRepository implements ProductRepositoryInterface
         ->where('type', 'LIKE', '%'.$type.'%')
         ->latest()
         ->paginate(10);
-        return $products;
+        return new ProductPagination($products);
     }
 
     public function create(array $data): Product{
