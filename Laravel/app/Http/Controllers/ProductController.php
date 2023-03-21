@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Contracts\Service\ProductServiceInterface;
 
 use Illuminate\Http\JsonResponse;
@@ -16,7 +15,7 @@ use App\Traits\PrepareResponseTrait;
 class ProductController extends Controller
 {
     use PrepareResponseTrait;
-
+    protected $productService;
     public function __construct(ProductServiceInterface $productService)
     {
         $this->productService = $productService;
@@ -34,7 +33,6 @@ class ProductController extends Controller
         $data = $request->validated();
         $result = $this->productService->create($data);
         return $this->prepareResponse($result['data'], $result['message'], $result['http_code']);
-    
     }
 
     public function update(UpdateProductRequest $request, int $id): JsonResponse
@@ -43,7 +41,7 @@ class ProductController extends Controller
         $result = $this->productService->update($data, $id);
         return $this->prepareResponse($result['data'], $result['message'], $result['http_code']);
     }
-    
+
     public function destroy(int $id): JsonResponse
     {
         $result = $this->productService->destroy($id);

@@ -16,6 +16,7 @@ use App\Traits\PrepareResponseTrait;
 class ItemController extends Controller
 {
     use PrepareResponseTrait;
+    protected $itemService;
 
     public function __construct(ItemServiceInterface $itemService)
     {
@@ -41,7 +42,7 @@ class ItemController extends Controller
         $result = $this->itemService->update($data, $item_id);
         return $this->prepareResponse($result['data'], $result['message'], $result['http_code']);
     }
-    
+
     public function destroy(int $item_id): JsonResponse
     {
         $result = $this->itemService->destroy($item_id);

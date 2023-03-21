@@ -14,12 +14,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\JsonResponse;
 
-
 class ProfileController extends Controller
 {
-
     use PrepareResponseTrait;
-
+    protected $profileService;
     public function __construct(ProfileServiceInterface $profileService)
     {
         $this->profileService = $profileService;
@@ -28,28 +26,22 @@ class ProfileController extends Controller
     public function index(): JsonResponse
     {
         $user = Auth::user();
-        
+
         return $this->prepareResponse(["user"=>$user], 'User retrieved successfully', 200);
     }
-    
-    public function update(UpdateProfileRequest $request): JsonResponse{
-        
-        $result = $this->profileService->updateProfile($request->validated()); 
-        
-        return $this->prepareResponse($result['data'], $result['message'], $result['http_code']);
 
-    }   
+    public function update(UpdateProfileRequest $request): JsonResponse
+    {
+        $result = $this->profileService->updateProfile($request->validated());
+
+        return $this->prepareResponse($result['data'], $result['message'], $result['http_code']);
+    }
 
 
     public function changePassword(ChangePasswordRequest $request): JsonResponse
     {
-        
-        $result = $this->profileService->changePassword($request->validated()); 
-        
+        $result = $this->profileService->changePassword($request->validated());
+
         return $this->prepareResponse($result['data'], $result['message'], $result['http_code']);
-
-       
-    }   
-
-
+    }
 }
