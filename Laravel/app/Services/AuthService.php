@@ -8,7 +8,7 @@ use App\Contracts\Repository\AuthRepositoryInterface;
 use Symfony\Component\HttpFoundation\Response;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
-use APP\Exceptions\ConflictException;
+use App\Exceptions\ConflictException;
 
 use App\Events\UserCreated;
 use Illuminate\Support\Facades\Event;
@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Event;
 class AuthService implements AuthServiceInterface
 {
     protected $authRepository;
-
+    
     public function __construct(AuthRepositoryInterface $authRepository)
     {
         $this->authRepository = $authRepository;

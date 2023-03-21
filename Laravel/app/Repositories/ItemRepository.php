@@ -11,12 +11,13 @@ use App\Http\Resources\ItemPaginationResource ;
 class ItemRepository implements ItemRepositoryInterface
 {
 
+    
     public function index(Product $product ): object{
         $items = $product
             ->items()
             ->orderBy('is_sold', 'asc')
             ->paginate(15);
-            return new ItemPagination($items);
+            return new ItemPaginationResource($items);
     }
 
     public function search(string $serial_number, Product $product): object{
@@ -24,7 +25,7 @@ class ItemRepository implements ItemRepositoryInterface
             ->items()
             ->where('serial_number', 'LIKE', '%'.$serial_number.'%')
             ->paginate(15);
-            return new ItemPagination($items);
+            return new ItemPaginationResource($items);
     }
 
     public function show(int $id): ?Item{

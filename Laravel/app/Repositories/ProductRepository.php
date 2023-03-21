@@ -16,7 +16,7 @@ class ProductRepository implements ProductRepositoryInterface
         ->withCount('unsoldItems')
         ->latest()
         ->paginate(10);
-        return new ProductPagination($products);
+        return new ProductPaginationResource($products);
     }
   
     public function search(string $type): object{
@@ -26,7 +26,7 @@ class ProductRepository implements ProductRepositoryInterface
         ->where('type', 'LIKE', '%'.$type.'%')
         ->latest()
         ->paginate(10);
-        return new ProductPagination($products);
+        return new ProductPaginationResource($products);
     }
 
     public function create(array $data): Product{
