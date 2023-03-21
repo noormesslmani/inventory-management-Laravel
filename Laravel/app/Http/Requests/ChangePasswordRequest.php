@@ -6,12 +6,14 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ChangePasswordRequest extends FormRequest
 {
-    public function authorize()
+   
+    public function authorize(): bool
     {
         return true;
     }
 
-    public function rules()
+   
+    public function rules(): array
     {
         return [
             'old_password' => 'required|string|min:6|max:50',
@@ -19,3 +21,4 @@ class ChangePasswordRequest extends FormRequest
         ];
     }
 }
+
