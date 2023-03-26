@@ -1,17 +1,10 @@
 <?php
 
 namespace App\Http\Requests;
+use App\Http\Requests\BaseRequest;
 
-use Illuminate\Foundation\Http\FormRequest;
-
-class SearchItemRequest extends FormRequest
+class SearchItemRequest extends BaseRequest
 {
-   
-    public function authorize(): bool
-    {
-        return true;
-    }
-
    
     public function rules(): array
     {

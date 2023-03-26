@@ -2,17 +2,11 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseRequest;
 
-class ChangePasswordRequest extends FormRequest
+class ChangePasswordRequest extends BaseRequest
 {
-   
-    public function authorize(): bool
-    {
-        return true;
-    }
-
-   
+  
     public function rules(): array
     {
         return [

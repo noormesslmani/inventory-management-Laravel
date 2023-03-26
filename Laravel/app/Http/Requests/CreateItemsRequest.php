@@ -2,16 +2,13 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseRequest;
 
 
 
-class CreateItemsRequest extends FormRequest
+class CreateItemsRequest extends BaseRequest
 {
-    public function authorize(): bool
-    {
-        return true;
-    }
+
 
     public function rules(): array
     {
